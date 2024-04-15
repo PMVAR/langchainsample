@@ -1,0 +1,31 @@
+from langchain_openai import OpenAIEmbeddings
+import numpy as np
+
+embeddings = OpenAIEmbeddings(model="text-embedding-ada-002")
+
+positive_reviews = [
+    "A cinematic masterpiece that captivates from start to finish.",
+    "Outstanding storytelling with breathtaking performances!",
+    "Exquisitely crafted and emotionally resonant.",
+    "An enthralling experience that stays with you.",
+    "Exceptional film! A triumph in every aspect."
+]
+
+negative_reviews = [
+    "A tedious experience, lacks creativity and depth.",
+    "The story drags and never quite lands.",
+    "Lackluster performances and dull script.",
+    "Disappointingly shallow plot and weak characterization.",
+    "Fails to deliver on its promise. A missed opportunity."
+]
+
+
+positive_embeds, negative_embeds = [], []
+
+for review in positive_reviews:
+  embedding = embeddings.embed_query(review)
+  positive_embeds.append(embedding)
+
+for review in negative_reviews:
+  embedding = embeddings.embed_query(review)
+  negative_embeds.append(embedding)
