@@ -1,0 +1,8 @@
+import os
+os.environ["OPENAI_API_KEY"] = "MY OPEN API KEY"
+
+from langchain_openai import OpenAI
+
+llm = OpenAI(temperature=0.5)
+text = "What is a good name for a framework that makes large language models easier to work with?"
+print(llm.invoke(text))
