@@ -1,0 +1,14 @@
+chat = ChatOpenAI(temperature=0,
+                  max_tokens=1000)
+
+context = [SystemMessage(content="You are a friendly Chatbot that likes to have conversations.")]
+
+while True:
+    user_message = input("You: ")
+    context.append(HumanMessage(content=user_message))
+    if user_message.lower() == "quit":
+        break
+    response = chat.invoke(context)
+
+    context.append(response)
+    print("AI: ", response.content)
